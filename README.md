@@ -1,2 +1,4 @@
 # SkillFactory
-Learning
+Learning:
+ - DataScience
+ - Data Analyst
