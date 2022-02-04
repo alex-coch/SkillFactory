@@ -39,48 +39,25 @@ def score_game(game_core):
     return(score)
 
 
-def game_core_v3(number):
-    '''Сначала устанавливаем любое random число, а потом уменьшаем или увеличиваем его в зависимости от того, больше оно или меньше нужного.
-       Функция принимает загаданное число и возвращает число попыток'''
-    count = 1
-    predict = np.random.randint(1,101)
-    p2 = None
-    while number != predict:
-        count+=1
-        if number > predict:
-            if p2 is None:
-                p2 = 100
-            # predict += 1
-        elif number < predict:
-            if p2 is None:
-                p2 = 1
-            # predict -= 1
-        ptemp = predict
-        print(f'number={number}, predict={predict}, p2={p2}')
-        predict = round((predict + p2) / 2)
-        p2 = ptemp
-        print(f'number={number}, predict={predict}, p2={p2}')
-        if count > 100:
-            exit(1)
-    return(count) # выход из цикла, если угадали
-
-score_game(game_core_v1)
-score_game(game_core_v2)
-# score_game(game_core_v3)
-
-def BinarySearch(lys, val):
+def game_core_v3(val):
+    '''Binary search'''
     first = 0
-    last = len(lys)-1
+    last = 99
     index = -1
+    count = 1
+    predict = np.random.randint(1, 101)
     while (first <= last) and (index == -1):
         mid = (first+last)//2
-        if lys[mid] == val:
+        if predict == val:
             index = mid
         else:
-            if val<lys[mid]:
+            if val<predict:
                 last = mid -1
             else:
                 first = mid +1
-    return index
+        count += 1
+    return count
 
-print(BinarySearch([10,20,30,40,50], 20))
+score_game(game_core_v1)
+score_game(game_core_v2)
+score_game(game_core_v3)
