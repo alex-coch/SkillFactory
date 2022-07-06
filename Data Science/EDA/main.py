@@ -5,6 +5,15 @@ import math
 
 import pandas as pd
 
+df = pd.read_csv('data_flats.csv', sep=';')
+df.dropna(inplace=True)
+print(df.describe())
+exit(1)
+
+vis_data = pd.read_csv("train.csv", encoding='ISO-8859-1', low_memory = False)
+result = vis_data.state.fillna(vis_data.state.mode())
+exit(1)
+
 
 data = pd.read_csv('data_flats.csv',sep=";")
 print(data.head())
