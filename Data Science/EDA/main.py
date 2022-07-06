@@ -5,6 +5,12 @@ import math
 
 import pandas as pd
 
+
+data = pd.read_csv('data_flats.csv',sep=";")
+print(data.head())
+print(data.info())
+
+
 array = np.array([i*i for i in range(100, 1000) if i % 2])
 print(np.corrcoef(array[::2], array[1::2]))
 exit(1)
