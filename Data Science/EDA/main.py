@@ -4,6 +4,16 @@ import operator
 import math
 
 import pandas as pd
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+
+
+vis_data = pd.read_csv("train.csv", encoding='ISO-8859-1', low_memory = False)
+# print(vis_data.info())
+res = scaler.fit_transform(np.array(vis_data.balance_due).reshape(-1, 1))
+print(res.min())
+
+exit(1)
 
 df = pd.read_csv('data_flats.csv', sep=';')
 df.dropna(inplace=True)
