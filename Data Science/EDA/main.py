@@ -5,6 +5,37 @@ import math
 
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
+
+# %matplotlib inline
+
+vis_data = pd.read_csv("train.csv",
+                       encoding = 'ISO-8859-1',
+                       low_memory = False)
+vis_data = vis_data.drop(['violation_zip_code', 'clean_up_cost'], axis=1)
+latlons = pd.read_csv("latlons.csv")
+vis_data = pd.concat([vis_data, latlons], axis=1)
+
+from sklearn.preprocessing import PolynomialFeatures
+
+pf = PolynomialFeatures(2)
+poly_features = pf.fit_transform(vis_data[['balance_due', 'payment_amount']])
+print(poly_features)
+print(poly_features.shape)
+
+print(pd.get_dummies(vis_data.state).shape)
+
+datetime_vals = pd.to_datetime(vis_data.payment_date.dropna())
+print(datetime_vals.head())
+exit(1)
+
+
+df = pd.read_csv("train.csv", encoding='ISO-8859-1', low_memory=False)
+df = df[df.balance_due > 0]
+balance_due = pow(df.balance_due, 0.5)
+print(balance_due.median() - balance_due.mean())
+exit(1)
+
+
 scaler = StandardScaler()
 
 
