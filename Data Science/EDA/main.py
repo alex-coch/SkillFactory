@@ -11,9 +11,13 @@ from sklearn.preprocessing import StandardScaler
 vis_data = pd.read_csv("train.csv",
                        encoding = 'ISO-8859-1',
                        low_memory = False)
+
+
 vis_data = vis_data.drop(['violation_zip_code', 'clean_up_cost'], axis=1)
 latlons = pd.read_csv("latlons.csv")
 vis_data = pd.concat([vis_data, latlons], axis=1)
+print(vis_data.info())
+exit(1)
 
 from sklearn.preprocessing import PolynomialFeatures
 
@@ -26,6 +30,8 @@ print(pd.get_dummies(vis_data.state).shape)
 
 datetime_vals = pd.to_datetime(vis_data.payment_date.dropna())
 print(datetime_vals.head())
+
+
 exit(1)
 
 
