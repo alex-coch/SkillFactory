@@ -11,7 +11,18 @@ from sklearn.preprocessing import StandardScaler
 vis_data = pd.read_csv("train.csv",
                        encoding = 'ISO-8859-1',
                        low_memory = False)
+vis_data.balance_due.dropna(inplace=True)
+def outliers_iqr(ys):
+    quartile_1, quartile_3 = np.percentile(ys, [25, 75])
+    iqr = quartile_3 - quartile_1
+    lower_bound = quartile_1 - (iqr * 1.5)
+    upper_bound = quartile_3 + (iqr * 1.5)
+    return np.where((ys <= upper_bound) | (ys >= lower_bound))[0]
 
+vis_data[outliers_iqr(vis_data.balance_due)].dropna(inplace=True)
+res = vis_data.balance_due
+print(res.max() - res.min())
+exit(1)
 
 vis_data = vis_data.drop(['violation_zip_code', 'clean_up_cost'], axis=1)
 latlons = pd.read_csv("latlons.csv")
