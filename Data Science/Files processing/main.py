@@ -2,8 +2,45 @@ import json
 from pprint import pprint
 import pandas as pd
 
+
+
 import xml.etree.ElementTree as ET
 
+new_root = ET.Element('menu')
+dish_1 = ET.SubElement(new_root, 'dish')
+dish_2 = ET.SubElement(new_root, 'dish')
+# print(new_root.getchildren())
+dish_1.set('name', 'Кура')
+dish_1.text = 'Белок'
+new_root_string = ET.tostring(new_root)
+# with open("new_menu.xml", "wb") as f:
+#     f.write(new_root_string)
+ET.ElementTree(new_root).write('new_menu_good.xml', encoding="utf-8")
+
+exit(1)
+tree = ET.parse('menu.xml')
+root = tree.getroot()
+
+import xmljson
+print(xmljson.parker.data(root))
+
+parker_json = xmljson.parker.data(root)
+back_to_xml = xmljson.parker.etree(parker_json)
+
+df_index = ['name', 'price', 'weight', 'class']
+df = pd.DataFrame(columns=df_index)
+
+for elem in root:
+    elements = [elem.get('name'), elem[0].text, elem[1].text, elem[2].text]
+    df = df.append(pd.Series(elements, index=df_index), ignore_index=True)
+print(df)
+
+print(len(root[0]))
+print(root[0][1])
+for elem in root:
+    for subelem in elem:
+        print(elem.attrib['name'], subelem.tag, subelem.text)
+    print()
 exit(1)
 
 data = pd.read_excel('Fig3-1.xls', header=None)
