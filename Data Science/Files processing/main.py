@@ -2,6 +2,34 @@ import json
 from pprint import pprint
 import pandas as pd
 
+data = pd.read_excel('Fig3-1.xls', header=None)
+pd.set_option('display.max_columns', None)
+
+data_file = pd.ExcelFile('./Fig3-1.xls')
+data = pd.read_excel(data_file, header=None)
+
+# with pd.ExcelFile('Fig3-1.xls') as xls:
+#     data['Sheet1'] = pd.read_excel(xls, 'Sheet1', na_values=['NA'])
+#     data['Sheet2'] = pd.read_excel(xls, 'Sheet2')
+
+data = pd.read_excel('Fig3-1.xls', ['Sheet1', 'Sheet2'])
+
+data = pd.read_excel('http://www.econ.yale.edu/~shiller/data/Fig3-1.xls', header=None)
+
+data = pd.read_excel("nakladnaya.xls", header=None, skiprows=2)
+# data.dropna(inplace=True)
+# print(data)
+
+
+writer = pd.ExcelWriter('test.xlsx', engine='xlsxwriter')
+workbook = writer.book
+worksheet = writer.sheets['table1']
+money_fmt = workbook.add_format({'bold': True})
+name_fmt = workbook.add_format({'color': 'red'})
+
+worksheet.set_column('E:F', 20, money_fmt)
+worksheet.set_column(1, 1, 20, name_fmt)
+exit(1)
 # with open('recipes.json') as f:
 #    recipes = json.load(f)
 #    # pprint(recipes[])
