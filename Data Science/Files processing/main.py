@@ -2,6 +2,10 @@ import json
 from pprint import pprint
 import pandas as pd
 
+import xml.etree.ElementTree as ET
+
+exit(1)
+
 data = pd.read_excel('Fig3-1.xls', header=None)
 pd.set_option('display.max_columns', None)
 
