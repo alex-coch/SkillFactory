@@ -47,3 +47,15 @@ ax.xaxis.set_tick_params(rotation=45)
 # задаём отображение сетки
 ax.grid();
 # plt.show()
+
+arr = [1, 0, 2, 3, 0, 9]
+count = 0
+for i in range(0, 6):
+    if (arr[i] != 0):
+      arr[count], arr[i] = arr[i], arr[count]
+      count+=1
+print(arr)
+
+# def isMatch(s:str, p:str)->bool:
+#     s = s +p
+#     return True
