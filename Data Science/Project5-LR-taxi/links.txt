@@ -1,0 +1,4 @@
+https://www.kaggle.com/code/poonaml/last-cab-to-new-york-animated-heatmap-trips-folium
+https://www.kaggle.com/code/paradiselost/tutorial-automl-capabilities-of-h2o-library
+https://www.kaggle.com/code/quentinmonmousseau/ml-workflow-lightgbm-0-37-randomforest-0-39 
+https://www.kaggle.com/code/au1206/nyc-taxi-duration-prediction-using-xgboost
