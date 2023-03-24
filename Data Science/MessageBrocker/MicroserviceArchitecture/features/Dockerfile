@@ -9,4 +9,4 @@ COPY ./requirements.txt ./
 # Устанавливаем зависимости
 RUN pip install -r requirements.txt
 # Исполняем команду для запуска скрипта
-CMD [ "python", "./metric.py" ]
+CMD [ "python", "./features.py" ]
