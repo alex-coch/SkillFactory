@@ -1,0 +1,4 @@
+https://www.kaggle.com/c/avito-demand-prediction
+
+dataset
+https://drive.google.com/file/d/1BRMtwJI3JLiF_2V6CvGgXF-0JkPLEjvg/view
